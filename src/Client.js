@@ -109,6 +109,10 @@ class Client extends EventEmitter {
         this.pupBrowser = browser;
         this.pupPage = page;
 
+        if(this.options.onClose) {
+            this.pupBrowser.process().on('close',this.options.onClose)
+        }
+
         await this.authStrategy.afterBrowserInitialized();
 
         await page.goto(WhatsWebURL, {
