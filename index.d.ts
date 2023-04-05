@@ -328,6 +328,11 @@ declare namespace WAWebJS {
         openChatWindow: (chatId) => Promise<void>
 
         /**
+         * Opens the Chat Drawer
+         * @param {string} chatId ID of the chat drawer that will be opened
+         */
+        openChatDrawer: (chatId) => Promise<void>
+        /**
          * Opens the Chat Search
          * @param {string} chatId ID of the chat search that will be opened
          */
