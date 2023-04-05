@@ -11,6 +11,9 @@ declare namespace WAWebJS {
         /** Current connection information */
         public info: ClientInfo
 
+        /** Current connection information */
+        public interface: InterfaceController
+
         /** Puppeteer page running WhatsApp Web */
         pupPage?: puppeteer.Page
 
@@ -314,6 +317,61 @@ declare namespace WAWebJS {
 
         /** Emitted when the RemoteAuth session is saved successfully on the external Database */
         on(event: 'remote_session_saved', listener: () => void): this
+    }
+
+    /** Current Interface Controller helper */
+    export interface InterfaceController {
+        /**
+         * Opens the Chat Window
+         * @param {string} chatId ID of the chat window that will be opened
+         */
+        openChatWindow: (chatId) => Promise<void>
+
+        /**
+         * Opens the Chat Search
+         * @param {string} chatId ID of the chat search that will be opened
+         */
+        openChatSearch: (chatId) => Promise<void>
+
+        /**
+         * Opens or Scrolls the Chat Window to the position of the message
+         * @param {string} msgId ID of the message that will be scrolled to
+         */
+        openChatWindowAt: (msgId) => Promise<void>
+
+        /**
+         * Opens the Message Drawer
+         * @param {string} msgId ID of the message drawer that will be opened
+         */
+        openMessageDrawer: (msgId) => Promise<void>
+
+        /**
+         * Closes the Right Drawer
+         */
+        closeRightDrawer: () => Promise<void>
+
+        /**
+        * Get all Features
+         */
+        getFeatures: () => Promise<void>
+
+        /**
+         * Check if Feature is enabled
+         * @param {string} feature status to check
+         */
+        checkFeatureStatus: (feature) => Promise<any>
+
+        /**
+         * Enable Features
+         * @param {string[]} features to be enabled
+         */
+        enableFeatures: (features) => Promise<void>
+
+        /**
+         * Disable Features
+         * @param {string[]} features to be disabled
+         */
+        disableFeatures: (features) => Promise<void>
     }
 
     /** Current connection information */
