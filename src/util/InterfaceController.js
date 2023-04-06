@@ -12,12 +12,13 @@ class InterfaceController {
     /**
      * Opens the Chat Window
      * @param {string} chatId ID of the chat window that will be opened
+     * @returns {boolean}
      */
     async openChatWindow(chatId) {
-        await this.pupPage.evaluate(async chatId => {
+        return await this.pupPage.evaluate(async chatId => {
             let chatWid = window.Store.WidFactory.createWid(chatId);
             let chat = await window.Store.Chat.find(chatWid);
-            await window.Store.Cmd.openChatAt(chat);
+            return await window.Store.Cmd.openChatAt(chat);
         }, chatId);
     }
 
