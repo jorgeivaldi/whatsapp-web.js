@@ -326,7 +326,7 @@ declare namespace WAWebJS {
          * @param {string} chatId ID of the chat window that will be opened
          * @returns { undefined | { wasVisible: boolean, alignAt: string } }
          */
-        openChatWindow: (chatId) => Promise<undefined | { wasVisible: boolean, alignAt: string }>
+        openChatWindow: (chatId) => Promise<undefined | boolean>
 
         /**
          * Opens the Chat Drawer

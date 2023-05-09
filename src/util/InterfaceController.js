@@ -12,7 +12,7 @@ class InterfaceController {
     /**
      * Opens the Chat Window
      * @param {string} chatId ID of the chat window that will be opened
-     * @returns { undefined | { wasVisible: boolean, alignAt: string } }
+     * @returns { undefined | boolean }
      */
     async openChatWindow(chatId) {
         return await this.pupPage.evaluate(async chatId => {
