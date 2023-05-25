@@ -54,6 +54,8 @@ exports.ExposeStore = (moduleRaidStr) => {
     window.Store.QuotedMsg = window.mR.findModule('getQuotedMsgObj')[0];
     window.Store.Socket = window.mR.findModule('deprecatedSendIq')[0];
     window.Store.SocketWap = window.mR.findModule('wap')[0];
+    window.Store.SearchContext = window.mR.findModule('getSearchContext')[0].getSearchContext;
+    window.Store.DrawerManager = window.mR.findModule('DrawerManager')[0].DrawerManager;
     window.Store.StickerTools = {
         ...window.mR.findModule('toWebpSticker')[0],
         ...window.mR.findModule('addWebpMetadata')[0]
@@ -247,11 +249,12 @@ exports.LoadUtils = () => {
         const newMsgId = new window.Store.MsgKey({
             from: meUser,
             to: chat.id,
-            id: window.Store.MsgKey.newId(),
+            id: await window.Store.MsgKey.newId(),
             participant: isMD && chat.id.isGroup() ? meUser : undefined,
             selfDir: 'out',
         });
 
+        // console.log({ newMsgId }) // debug
         const extraOptions = options.extraOptions || {};
         delete options.extraOptions;
 
