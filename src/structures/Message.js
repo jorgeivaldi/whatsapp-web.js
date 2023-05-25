@@ -22,7 +22,7 @@ class Message extends Base {
     _patch(data) {
         this._data = data;
         
-        console.log(data)
+        // console.log(data) // debug
         /**
          * MediaKey that represents the sticker 'ID'
          * @type {string}

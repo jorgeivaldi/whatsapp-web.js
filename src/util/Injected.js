@@ -254,7 +254,7 @@ exports.LoadUtils = () => {
             selfDir: 'out',
         });
 
-        console.log({ newMsgId })
+        // console.log({ newMsgId }) // debug
         const extraOptions = options.extraOptions || {};
         delete options.extraOptions;
 
