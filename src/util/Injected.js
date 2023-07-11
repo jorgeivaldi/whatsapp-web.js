@@ -461,7 +461,9 @@ exports.LoadUtils = () => {
     };
 
     window.WWebJS.getContactModel = contact => {
+        const debug = false
         let res = contact.serialize();
+        if(debug) console.log({ contact })
         res.isBusiness = contact.isBusiness;
 
         if (contact.businessProfile) {
@@ -470,9 +472,19 @@ exports.LoadUtils = () => {
 
         res.isMe = contact.isMe;
         res.isUser = contact.isUser;
-        res.isGroup = contact.isGroup;
+
+        if(typeof(contact.isGroup) === 'undefined') {
+            res.isGroup = contact.id.server.includes('g') //g:group /c:contact
+        } else {
+            res.isGroup = contact.isGroup;
+        }
+
         res.isWAContact = contact.isWAContact;
-        res.isMyContact = contact.isMyContact;
+        if(typeof(contact.isMyContact) === 'undefined') {
+            res.isMyContact = ("isAddressBookContact" in contact);
+        } else {
+            res.isMyContact = contact.isMyContact;
+        }
         res.isBlocked = contact.isContactBlocked;
         res.userid = contact.userid;
 
