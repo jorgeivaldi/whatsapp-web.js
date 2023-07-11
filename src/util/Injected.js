@@ -461,7 +461,7 @@ exports.LoadUtils = () => {
     };
 
     window.WWebJS.getContactModel = contact => {
-        const debug = false
+        const debug = true
         let res = contact.serialize();
         if(debug) console.log({ contact })
         res.isBusiness = contact.isBusiness;
@@ -486,7 +486,12 @@ exports.LoadUtils = () => {
             res.isMyContact = contact.isMyContact;
         }
         res.isBlocked = contact.isContactBlocked;
-        res.userid = contact.userid;
+
+        if(typeof(contact.userid) === 'undefined') {
+            res.userid = contact.id.user;
+        } else {
+            res.userid = contact.userid;
+        }
 
         return res;
     };
